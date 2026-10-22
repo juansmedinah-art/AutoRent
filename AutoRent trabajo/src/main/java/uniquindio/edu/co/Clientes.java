@@ -3,12 +3,12 @@ package uniquindio.edu.co;
 public abstract class Clientes {
     private String nombre;
     private String correo;
-    private String Documento;
+    private int Documento;
 
-    public Clientes(String nombre, String correo, String documento) {
+    public Clientes(String nombre, String correo, int documento) {
         this.nombre = nombre;
         this.correo = correo;
-        Documento = documento;
+        this.Documento = documento;
     }
 
     public String getNombre() {
@@ -27,16 +27,15 @@ public abstract class Clientes {
         this.correo = correo;
     }
 
-    public String getDocumento() {
+    public int getDocumento() {
         return Documento;
     }
 
-    public void setDocumento(String documento) {
+    public void setDocumento(int documento) {
         Documento = documento;
     }
 
     public void mensajeCliente(){
-        System.out.println("==Cliente==");
         System.out.println("Nombre: "+getNombre());
         System.out.println("Correo: "+getCorreo());
         System.out.println("Documento: "+getDocumento());
