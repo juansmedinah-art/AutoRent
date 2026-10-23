@@ -1,4 +1,4 @@
 public enum Estado {
-    BUENO,
-    MALO
+    MALO,
+    BUENO
 }

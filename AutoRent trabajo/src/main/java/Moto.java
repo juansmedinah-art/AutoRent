@@ -1,32 +1,34 @@
 public class Moto extends Vehiculo{
 
-    private String clindraje;
+    private String cilindraje;
 
-    public Moto(int añoFabricacion, String marca, String modelo, String placa, Estado estado, TarifaBase tarifaBase, String clindraje) {
-        super(añoFabricacion, marca, modelo, placa, estado, tarifaBase);
-        this.clindraje = clindraje;
+    public Moto(String placa, String marca, String modelo, int añoFabricacion, Estado estado, String cilindraje) {
+        super(placa, marca, modelo, añoFabricacion, estado);
+        this.cilindraje = cilindraje;
     }
 
-    @Override
-    public int calcularAlquiler(int dias) {
+    public String getCilindraje() {
+        return cilindraje;
+    }
 
-        double alquiler;
-        alquiler=tarifaBase*0.90*dias;
-        return alquiler;
+    public void setCilindraje(String cilindraje) {
+        this.cilindraje = cilindraje;
     }
 
     @Override
     public String toString() {
         return super.toString()+
-                "cilindraje= "+ clindraje;
-
+                " Cilindraje= "+cilindraje;
     }
 
-    public String getClindraje() {
-        return clindraje;
+    public double calcularDescuento() {
+        return getTarifaBase().getTarifaInicial()*0.10;
     }
 
-    public void setClindraje(String clindraje) {
-        this.clindraje = clindraje;
+    @Override
+    public double calcularCostoAlquiler(int dias) {
+        double costo;
+        costo=(getTarifaBase().getTarifaInicial()-calcularDescuento())*dias;
+        return costo;
     }
 }

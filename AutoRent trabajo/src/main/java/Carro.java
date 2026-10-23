@@ -2,8 +2,8 @@ public class Carro extends Vehiculo{
 
     private int numeroPuertas;
 
-    public Carro(int añoFabricacion, String marca, String modelo, String placa, Estado estado, TarifaBase tarifaBase, int numeroPuertas) {
-        super(añoFabricacion, marca, modelo, placa, estado, tarifaBase);
+    public Carro(String placa, String marca, String modelo, int añoFabricacion, Estado estado, int numeroPuertas) {
+        super(placa, marca, modelo, añoFabricacion, estado);
         this.numeroPuertas = numeroPuertas;
     }
 
@@ -18,14 +18,17 @@ public class Carro extends Vehiculo{
     @Override
     public String toString() {
         return super.toString()+
-                "Número de puertas= "+numeroPuertas;
+                " Número de puertas= "+numeroPuertas;
+    }
+
+    public double calcularRecargo() {
+        return 20000;
     }
 
     @Override
-    public int calcularAlquiler(int dias) {
-        double alquiler;
-        alquiler=(Vehiculo.getTarifaBase()+20000)*dias;
-
-        return alquiler;
+    public double calcularCostoAlquiler(int dias) {
+        double costo;
+        costo=(getTarifaBase().getTarifaInicial()+calcularRecargo())*dias;
+        return costo;
     }
 }

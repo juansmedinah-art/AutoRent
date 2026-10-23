@@ -1,45 +1,27 @@
-import java.util.ArrayList;
-import java.util.List;
-
 public abstract class Vehiculo {
 
     private String placa;
     private String marca;
     private String modelo;
     private int añoFabricacion;
-
     private Estado estado;
     private TarifaBase tarifaBase;
 
-    private List<Alquiler> listaAlquileres;
-
-    public Vehiculo(int añoFabricacion, String marca, String modelo, String placa, Estado estado, TarifaBase tarifaBase) {
-
-
-        this.añoFabricacion = añoFabricacion;
-        this.listaAlquileres = new ArrayList<>();
+    public Vehiculo(String placa, String marca, String modelo, int añoFabricacion, Estado estado) {
+        this.placa = placa;
         this.marca = marca;
         this.modelo = modelo;
-        this.placa = placa;
-
-        this.estado=estado;
-        this.tarifaBase=tarifaBase;
-    }
-
-    public int getAñoFabricacion() {
-        return añoFabricacion;
-    }
-
-    public void setAñoFabricacion(int añoFabricacion) {
         this.añoFabricacion = añoFabricacion;
+        this.estado = estado;
+        this.tarifaBase = TarifaBase.TARIFA_BASE;
     }
 
-    public List<Alquiler> getListaAlquileres() {
-        return listaAlquileres;
+    public String getPlaca() {
+        return placa;
     }
 
-    public void setListaAlquileres(List<Alquiler> listaAlquileres) {
-        this.listaAlquileres = listaAlquileres;
+    public void setPlaca(String placa) {
+        this.placa = placa;
     }
 
     public String getMarca() {
@@ -58,12 +40,12 @@ public abstract class Vehiculo {
         this.modelo = modelo;
     }
 
-    public String getPlaca() {
-        return placa;
+    public int getAñoFabricacion() {
+        return añoFabricacion;
     }
 
-    public void setPlaca(String placa) {
-        this.placa = placa;
+    public void setAñoFabricacion(int añoFabricacion) {
+        this.añoFabricacion = añoFabricacion;
     }
 
     public Estado getEstado() {
@@ -78,23 +60,17 @@ public abstract class Vehiculo {
         return tarifaBase;
     }
 
-    public void setTarifaBase(TarifaBase tarifaBase) {
-        this.tarifaBase = tarifaBase;
-    }
-
     @Override
     public String toString() {
         return "Vehiculo{" +
-                "añoFabricacion=" + añoFabricacion +
-                ", placa='" + placa + '\'' +
+                "placa='" + placa + '\'' +
                 ", marca='" + marca + '\'' +
                 ", modelo='" + modelo + '\'' +
+                ", añoFabricacion=" + añoFabricacion +
                 ", estado=" + estado +
-                ", tarifaBase=" + tarifaBase +
-                ", listaAlquileres=" + listaAlquileres +
+                ", tarifaBase=" + tarifaBase.getTarifaInicial() +
                 '}';
     }
 
-    public abstract int calcularAlquiler(int dias.getNumeroDias()){
-    }
+    public abstract double calcularCostoAlquiler(int dias);
 }
